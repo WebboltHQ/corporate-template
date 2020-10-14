@@ -40,6 +40,7 @@ export async function getStaticProps() {
     name: data.name,
     heroTitle: data.heroTitle,
     heroSubtitle: data.heroSubtitle,
+    headerImage: data.headerImage,
   };
 
   return {
