@@ -17,7 +17,7 @@ export default function Home({ site }) {
       <div>
         <Nav name={site.name} />
         <main>
-          <Hero title={site.heroTitle} subtitle={site.heroSubtitle} />
+          <Hero title={site.heroTitle} subtitle={site.heroSubtitle} headerImage={site.headerImage} />
           <WhoWeAre />
           <Contact />
         </main>
