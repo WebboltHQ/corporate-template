@@ -29,13 +29,14 @@ export default function Home({ site }) {
 }
 
 export async function getStaticProps() {
-  const doc = await db
-    .collection('users')
-    .doc(process.env.NEXT_PUBLIC_USER_ID)
-    .collection('sites')
-    .doc(process.env.NEXT_PUBLIC_SITE_ID)
-    .get();
-  const data = doc.data();
+  const res = await fetch(
+    `https://us-central1-instantly-app.cloudfunctions.net/getSite?${new URLSearchParams({
+      apiKey: process.env.NEXT_PUBLIC_GET_SITE_API_KEY,
+      userId: process.env.NEXT_PUBLIC_USER_ID,
+      siteId: process.env.NEXT_PUBLIC_SITE_ID,
+    })}`,
+  );
+  const data = await res.json();
   const site = {
     name: data.name,
     heroTitle: data.heroTitle,
