@@ -5,7 +5,6 @@ import Hero from '../components/Hero';
 import WhoWeAre from '../components/WhoWeAre';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
-import db from '../firebase/clientApp';
 
 export default function Home({ site }) {
   return (
