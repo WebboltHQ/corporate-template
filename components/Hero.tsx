@@ -7,7 +7,7 @@ const Hero = ({ title, subtitle, headerImage }) => {
   return (
     <section className={`${classes.wrapper} text-gray-700 body-font`}>
       <div className="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-        {headerImage !== '' && (
+        {headerImage && (
           <img
             className="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded"
             alt="hero"

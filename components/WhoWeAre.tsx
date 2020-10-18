@@ -15,7 +15,7 @@ const WhoWeAre = ({ team }) => {
           </p>
         </div>
         <div className="flex flex-wrap -m-4">
-          {team.member.map((person, index) => (
+          {team.members.map((person, index) => (
             <div className="p-4 lg:w-1/2" key={index}>
               <div className="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
                 <img
