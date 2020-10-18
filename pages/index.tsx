@@ -18,7 +18,7 @@ export default function Home({ site }) {
         <main>
           <Hero title={site.heroTitle} subtitle={site.heroSubtitle} headerImage={site.headerImage} />
           <WhoWeAre team={site.team} />
-          <Contact />
+          <Contact contact={site.contact} />
         </main>
 
         <Footer />
@@ -42,6 +42,7 @@ export async function getStaticProps() {
     heroSubtitle: data.heroSubtitle,
     headerImage: data.headerImage,
     team: data.team,
+    contact: data.contact,
   };
 
   return {
