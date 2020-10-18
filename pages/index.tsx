@@ -21,7 +21,7 @@ export default function Home({ site }) {
           <Contact contact={site.contact} />
         </main>
 
-        <Footer />
+        <Footer name={site.name} contact={site.contact} />
       </div>
     </>
   );
