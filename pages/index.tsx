@@ -6,7 +6,7 @@ import WhoWeAre from '../components/WhoWeAre';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
-export default function Home({ site }) {
+export default function Home({ site, childPageList }) {
   return (
     <>
       <Head>
@@ -14,7 +14,7 @@ export default function Home({ site }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Nav name={site.name} />
+        <Nav name={site.name} childPages={childPageList} />
         <main>
           <Hero title={site.heroTitle} subtitle={site.heroSubtitle} headerImage={site.headerImage} />
           <WhoWeAre team={site.team} />
@@ -28,14 +28,24 @@ export default function Home({ site }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(
-    `https://us-central1-instantly-app.cloudfunctions.net/getSite?${new URLSearchParams({
-      apiKey: process.env.NEXT_PUBLIC_GET_SITE_API_KEY,
-      userId: process.env.NEXT_PUBLIC_USER_ID,
-      siteId: process.env.NEXT_PUBLIC_SITE_ID,
-    })}`,
-  );
-  const data = await res.json();
+  const [siteData, childPageListData] = await Promise.all([
+    fetch(
+      `https://us-central1-instantly-app.cloudfunctions.net/getSite?${new URLSearchParams({
+        apiKey: process.env.NEXT_PUBLIC_GET_SITE_API_KEY,
+        userId: process.env.NEXT_PUBLIC_USER_ID,
+        siteId: process.env.NEXT_PUBLIC_SITE_ID,
+      })}`,
+    ),
+    fetch(
+      `https://us-central1-instantly-app.cloudfunctions.net/getChildPageList?${new URLSearchParams({
+        apiKey: process.env.NEXT_PUBLIC_GET_SITE_API_KEY,
+        userId: process.env.NEXT_PUBLIC_USER_ID,
+        siteId: process.env.NEXT_PUBLIC_SITE_ID,
+      })}`,
+    ),
+  ]);
+
+  const data = await siteData.json();
   const site = {
     name: data.name,
     heroTitle: data.heroTitle,
@@ -45,9 +55,12 @@ export async function getStaticProps() {
     contact: data.contact,
   };
 
+  const childPageList = await childPageListData.json();
+
   return {
     props: {
       site,
+      childPageList,
     },
   };
 }
