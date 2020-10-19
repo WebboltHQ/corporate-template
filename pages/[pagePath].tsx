@@ -1,11 +1,14 @@
 import React from 'react';
+import MarkdownIt from 'markdown-it';
 
 import Layout from '../components/Layout';
+
+const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 const ChildPage = ({ childPageList, pageData, site }) => {
   return (
     <Layout site={site} childPageList={childPageList}>
-      {pageData.content}
+      <div dangerouslySetInnerHTML={{ __html: mdParser.render(pageData.content) }}></div>
     </Layout>
   );
 };
