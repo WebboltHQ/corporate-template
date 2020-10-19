@@ -23,7 +23,7 @@ export async function getStaticPaths() {
   const data = await res.json();
   const paths = data.map(pageData => {
     return {
-      params: { pageName: pageData.path },
+      params: { pagePath: pageData.path, pageId: pageData.id },
     };
   });
   return {
@@ -56,7 +56,7 @@ export async function getStaticProps({ params }) {
         apiKey: process.env.NEXT_PUBLIC_GET_SITE_API_KEY,
         userId: process.env.NEXT_PUBLIC_USER_ID,
         siteId: process.env.NEXT_PUBLIC_SITE_ID,
-        pageName: params.pageName,
+        pagePath: params.pagePath,
       })}`,
     ),
   ]);
