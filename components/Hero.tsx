@@ -16,7 +16,7 @@ const Hero = ({ title, subtitle, headerImage }) => {
         )}
         <div className="text-center lg:w-2/3 w-full">
           <H1>{title}</H1>
-          <p className="mb-8 leading-relaxed">{subtitle}</p>
+          <p className="mb-8 leading-relaxed text-gray-900">{subtitle}</p>
         </div>
       </div>
     </section>

@@ -17,7 +17,7 @@ export default ChildPage;
 
 export async function getStaticPaths() {
   const res = await fetch(
-    `https://us-central1-instantly-app.cloudfunctions.net/getChildPageList?${new URLSearchParams({
+    `${process.env.API_URL}/getChildPageList?${new URLSearchParams({
       apiKey: process.env.NEXT_PUBLIC_GET_SITE_API_KEY,
       userId: process.env.NEXT_PUBLIC_USER_ID,
       siteId: process.env.NEXT_PUBLIC_SITE_ID,
@@ -39,7 +39,7 @@ export async function getStaticProps({ params }) {
   const [siteData, childPageListData, pageDataRes] = await Promise.all([
     // サイト情報
     fetch(
-      `https://us-central1-instantly-app.cloudfunctions.net/getSite?${new URLSearchParams({
+      `${process.env.API_URL}/getSite?${new URLSearchParams({
         apiKey: process.env.NEXT_PUBLIC_GET_SITE_API_KEY,
         userId: process.env.NEXT_PUBLIC_USER_ID,
         siteId: process.env.NEXT_PUBLIC_SITE_ID,
@@ -47,7 +47,7 @@ export async function getStaticProps({ params }) {
     ),
     // 子ページ一覧
     fetch(
-      `https://us-central1-instantly-app.cloudfunctions.net/getChildPageList?${new URLSearchParams({
+      `${process.env.API_URL}/getChildPageList?${new URLSearchParams({
         apiKey: process.env.NEXT_PUBLIC_GET_SITE_API_KEY,
         userId: process.env.NEXT_PUBLIC_USER_ID,
         siteId: process.env.NEXT_PUBLIC_SITE_ID,
@@ -55,7 +55,7 @@ export async function getStaticProps({ params }) {
     ),
     // 子ページ詳細
     fetch(
-      `https://us-central1-instantly-app.cloudfunctions.net/getChildPage?${new URLSearchParams({
+      `${process.env.API_URL}/getChildPage?${new URLSearchParams({
         apiKey: process.env.NEXT_PUBLIC_GET_SITE_API_KEY,
         userId: process.env.NEXT_PUBLIC_USER_ID,
         siteId: process.env.NEXT_PUBLIC_SITE_ID,
