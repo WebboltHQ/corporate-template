@@ -2,13 +2,19 @@ import React from 'react';
 import MarkdownIt from 'markdown-it';
 
 import Layout from '../components/Layout';
+import classes from '../config/classes';
+import stlyes from '../styles/[pagePath].module.scss';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
 const ChildPage = ({ childPageList, pageData, site }) => {
   return (
     <Layout site={site} childPageList={childPageList}>
-      <div dangerouslySetInnerHTML={{ __html: mdParser.render(pageData.content) }}></div>
+      <div className={`${classes.wrapper} text-gray-700 body-font py-24`}>
+        <div
+          className={stlyes['childpage-content']}
+          dangerouslySetInnerHTML={{ __html: mdParser.render(pageData.content) }}></div>
+      </div>
     </Layout>
   );
 };
